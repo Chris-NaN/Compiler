@@ -1,0 +1,5 @@
+Program a;
+Var Integer a;
+Begin
+    a:=10
+End

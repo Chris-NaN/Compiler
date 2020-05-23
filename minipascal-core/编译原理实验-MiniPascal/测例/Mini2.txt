@@ -1,0 +1,7 @@
+Program a;
+Var Integer a,b;
+Begin
+    a:=3;
+    b:=4;
+    a:=a+b
+End

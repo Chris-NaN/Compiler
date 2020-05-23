@@ -1,0 +1,10 @@
+Program a;
+Var Integer a,b;
+Begin
+    a:=0;
+    while(a<3)
+    Begin
+        a:=a+1;
+        b:=a*3
+    End
+End
