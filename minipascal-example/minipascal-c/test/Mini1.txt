@@ -1,5 +1,6 @@
 Program a;
-Var Integer a;
+Var a :Integer;
 Begin
     a:=10
 End
+.

@@ -1,6 +1,7 @@
 Program a;
-Var Integer a:=5,b:=7;Real c:=3.14,d:=2.48;
+Var a:=5,b:=7;Real c:=3.14,d:=2.48 :Integer;
 Begin
     a:=a*b;
     c:=c+d
 End
+.

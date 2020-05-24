@@ -1,7 +1,8 @@
 Program a;
-Var Integer a;
+Var a  :Integer ;
 Begin
     a:=10;
     Var real b:=1.5;
     b:=a+1
 End
+.

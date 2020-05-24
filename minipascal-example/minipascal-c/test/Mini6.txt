@@ -1,5 +1,5 @@
 Program a;
-Var Integer a,b;
+Var a,b :Integer;
 Begin
     a:=0;
     while(a<5)
@@ -9,3 +9,4 @@ Begin
         if(b<20) b:=b else b:=0
     End
 End
+.

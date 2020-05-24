@@ -1,5 +1,5 @@
 Program a;
-Var Integer a,b,c;
+Var a,b,c :Integer;
 Begin
     a:=3;
     b:=5;
@@ -8,3 +8,4 @@ Begin
     Else if(c>9&(a<2|b+3>9)) a:=6
     Else a:=7
 End
+.
