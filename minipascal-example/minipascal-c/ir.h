@@ -29,5 +29,8 @@ typedef struct ir_quarter_expression_ {
 extern int NXQ;
 
 void OutputQuaterList(void);
+int GEN(char * op, int arg1, int arg2, int result);
+int Merge(int p1, int p2);
+void BackPatch(int p, int t);
 
 #endif

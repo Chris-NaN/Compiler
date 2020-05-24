@@ -6,8 +6,12 @@ LD_FLAGS = -g
 
 all: $(TARGET)
 
-$(TARGET): pascal_lex.o pascal_yacc.o ast.o ir.o table.o main.o
+$(TARGET): pascal_lex.o pascal_yacc.o ast.o util.o ir.o table.o main.o
 	gcc $(LD_FLAGS) -o $@ $^
+
+
+util.o: util.c util.h
+	gcc $(CFLAGS) -c -o $@ util.c
 
 ast.o: ast.c ast.h
 	gcc $(CFLAGS) -c -o $@ ast.c

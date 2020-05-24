@@ -1,0 +1,11 @@
+Program a;
+Var Integer a,b;
+Begin
+    a:=0;
+    while(a<5)
+    Begin
+        b:=b+a;
+        a:=a+1;
+        if(b<20) b:=b else b:=0
+    End
+End

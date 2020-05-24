@@ -1,0 +1,8 @@
+Program a;
+Var Integer a,b;
+Begin
+    a:=3;
+    if(a!=0) a:=4
+    else a:=5;
+    b:=3
+End

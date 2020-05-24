@@ -2,8 +2,16 @@
 #ifndef _AST_H_
 #define _AST_H_
 
-#define RET_SUCCESS		0
-#define RET_ERROR		-1
+#define NULL_NODE_POINTER     500
+#define INIT_NODE_SUCCESS     501
+#define ADD_SON_NODE_SUCCESS  502
+#define SET_NODE_VAL_STR_SUCCESS  503
+#define GET_SON_NODE_SUCCESS  504
+#define ADD_BROTHER_NODE_SUCCESS  505
+#define ADD_BROTHER_TO_NODE_WITHOUT_PARENT  506
+#define GET_NEXT_BROTHER_NODE_SUCCESS  507
+#define NEW_NODE_SUCCESS  508
+#define MEMORY_ALLOC_ERROR  509
 
 enum node_type
 {
@@ -41,6 +49,8 @@ int get_next_brother_node(struct node *cur_nd, struct node **result);
 int new_node(struct node **result);
 
 void init_ast();
+void complete_init_node(struct node **cur, char *Name);
+void draw_ast(struct node *cur, int level);
 
 extern struct node ast_root;
 

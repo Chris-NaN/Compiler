@@ -1,0 +1,4 @@
+Program a;
+Var Integer
+
+ Error: Line: 2 Reason: syntax error
