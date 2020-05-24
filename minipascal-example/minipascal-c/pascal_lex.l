@@ -84,7 +84,7 @@ white		[\t\n\040]
 {letter}{alnum}*	{ ECHO;strcpy(yylval.str,yytext); return Iden;}
 {white}+			{ECHO;}
 {d}+{letter}+[alnum]*   {error_number = ILLEGALIDEN ;yyerror(yytext); return ERRORCHAR; }
-.					{error_number = UNRE_COG_SYMBOL; yyerror(yytext); return ERRORCHAR; }
+.				{error_number = UNRE_COG_SYMBOL; yyerror(yytext); return ERRORCHAR; }
 
 %%
 

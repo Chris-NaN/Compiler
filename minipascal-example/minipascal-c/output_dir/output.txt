@@ -1,4 +1,3 @@
-Program a;
-Var Integer
+Program a ;
 
- Error: Line: 2 Reason: syntax error
+ Error: Line: 1 Reason: can not be recognized!

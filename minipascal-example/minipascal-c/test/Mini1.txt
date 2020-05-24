@@ -1,6 +1,3 @@
-Program a;
-Var a :Integer;
-Begin
-    a:=10
-End
+Program a ;
+
 .

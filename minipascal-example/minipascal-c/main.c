@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 #include "pascal_lex.h"
 #include "pascal_yacc.h"
 
@@ -32,10 +32,18 @@ int main(int argc, char *argv[])
 	yyparse();
 
 	// 输出四元式
+	puts("output quaterList");
 	OutputQuaterList();
 
 	// 输出符号表(变量名）
+	puts("output varList");
 	OutputVarList();
+
+	puts("output typeList");
+	OutputTypeList();
+
+	puts("draw ast_tree:");
+	draw_ast(&ast_root, 0);
 
 	// 输出抽象语法树
 	// TODO 实现通过Graphviz输出抽象语法树

@@ -220,6 +220,8 @@ int yyerror(char*);
 ProgDef: Program Iden ';' SubProg '.'
           {
 			// 文法符号Program对应关键字"program"，程序
+			//printf("Error!!! \n");
+
 			set_node_val_str(&ast_root,$2);
 			struct node *tmpnode=NULL;
 			$$=&ast_root;
@@ -239,10 +241,13 @@ ProgDef: Program Iden ';' SubProg '.'
 
 			complete_init_node(&node4, ".");
 			add_brother_node($4, node4);
+
+			
           }
 	;
 SubProg: VarDef CompState
 		{
+			//printf("Error!!! \n");
 			struct node* cur;
 			complete_init_node(&cur, "NULL");
 			$$ = cur;
@@ -256,6 +261,7 @@ SubProg: VarDef CompState
 VarDef:	Var VarDefList ';'
         {
 			// 变量声明
+			
 			struct node* cur;
 			complete_init_node(&cur, "NULL");
 			$$.nd = cur;
@@ -1191,7 +1197,7 @@ RelationOp:	'<'
 int yyerror(char *errstr)
 {
 	printf("\n\n Error: ");
-	printf("Line: %d Reason: ", line_number);
+	printf("Line: %d Reason:", line_number);
 	switch(error_number) {
 		case REDEFINE_ARRAY :{
 			printf("Array %s is redefined!\n", errstr);
