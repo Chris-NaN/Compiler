@@ -1,0 +1,8 @@
+\{ real & integer def test, plus VarList test \}
+Program a;
+Var j:real; k, l:integer;
+Begin
+    k:=2;
+    l:=4;
+    j:= 1.2;
+End.

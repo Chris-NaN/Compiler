@@ -18,13 +18,10 @@ int yyerror(char*);
 
 #define INT 0
 #define REAL 1
-#define ARRAY 2
-#define BOOL 3
+#define BOOL 2
 
-#define WHILE 1
-#define FOR 2
-#define DO 3
-#define REPEAT 4
+#define WHILE 3
+#define DO 4
 
 %}
 %start    ProgDef
@@ -52,7 +49,6 @@ int yyerror(char*);
  struct {
 	int type;
 	int Iv; 
-	int array_no;
 	struct node *nd;
  } iv_node;
  struct {
@@ -72,11 +68,6 @@ int yyerror(char*);
 	int type, place; 
 	struct node *nd;
  } exp_node;
-	
- struct {
-	int NO; 
-	struct node *nd;
- } no_node;
  struct {
 	int TC, FC, CH; 
 	struct node *nd;
@@ -88,39 +79,11 @@ int yyerror(char*);
 	struct node *nd;
  } ForLoop_node;
  struct {
-	int Array_type;
 	int NO;
 	int OFFSET; //
 	char str[20];
 	struct node* nd;
  }Variable_node;
-	
- struct {
-	int NO; 	  
-	int DIM;      
-	int tmp_place; 
-	struct node* nd;
- }ExprList_node;
-	
- struct {
-	int DIM;
-	int NO; 
-	struct node* nd;
- }TypeFirst_node;
-
-	
- struct {
-	int L;
-	int U;
-	struct node* nd;
- }OneDim_node;
- struct {
-	int L_cnt;
-	int T;
-	int check_id;
-	int next_id;
-	struct node* nd;
- }case_node;
 
 }
 
@@ -150,18 +113,7 @@ int yyerror(char*);
 %token	 <str>	Or			411
 %token	 <str>	And			412
 %token	 <str>	Not			413
-%token	 <str>	For			414
-%token	 <str>	To			415
-%token	 <str>	Repeat		416
-%token	 <str>	Until		417
-%token	 <str>	Of			418
-%token	 <str>	Array		419
-%token	 <str>	OneDimString	420
-%token	 <str>	Goto	    421
-%token	 <str>	Case	    422
-%token	 <str>	Break	    423
-%token	 <str>	Continue	424
-%token	 <str>	Boolean 	425
+
 
 /*Define double_character terminates:   */
 %token			LE			500
@@ -212,9 +164,6 @@ int yyerror(char*);
 %type <Bexp_node>BoolExpr_or 
 %type <ForLoop_node> Wh
 %type <ForLoop_node> WBD
-
-
-
 
 %%
 ProgDef: Program Iden ';' SubProg '.'
@@ -310,9 +259,8 @@ VarDefState: VarList ':' Type
 			$$.nd = cur;
 
 			if ($3.type == INT || $3.type == REAL) {
+				//printf("Type check: %d\n",$3.type);
 				VarBackPatch($1.First, $3.type);
-			}else{
-				VarBackArrayPatch($1.First, $3.type, $3.Iv, $3.array_no);
 			}
 			struct node *node1;
 			complete_init_node(&node1, ":");
@@ -354,7 +302,7 @@ Type: Integer
 			add_son_node($$.nd, node1);
 		}
 	;
-VarList:	VarList ',' Variable
+VarList:	VarList','Variable
 		{
 			// 同一类型的多个变量通过逗号分割
 			struct node* cur;
@@ -420,7 +368,7 @@ S_L:	StateList ';'
 			struct node* cur;
 			complete_init_node(&cur, "NULL");
 			$$.nd = cur;
-
+			//printf(".y: NXQ: %d\n", NXQ);
 			BackPatch($1.CH, NXQ);
 
 			struct node *node1;
@@ -520,19 +468,26 @@ CompState:	Begin StateList End
 			add_brother_node($2.nd, node2);
 		}
 	;
-AsignState:	Variable ASSIGNOP  Expr
+AsignState:	Variable ASSIGNOP Expr
 		{
 			// 赋值语句
 			struct node* cur;
 			complete_init_node(&cur, "NULL");
 			$$.nd = cur;
-
-			if ($1.OFFSET == 0) {
+			int A = NewTemp();
+			
+			if(VarList[$1.NO].type == INT && $3.type == REAL){
+				GEN("rti", $3.place, 0, A);
+				GEN(":=", A, 0, $1.NO);
+			}else if(VarList[$1.NO].type == REAL && $3.type == INT){
+				GEN("itr", $3.place, 0, A);
+				GEN(":=", A, 0, $1.NO);
+			}else if ($1.OFFSET == 0) {
 				GEN(":=", $3.place, 0, $1.NO);
 			}else{
 				GEN("[]=", $3.place, $1.NO, $1.OFFSET);
 			}
-
+			
 			struct node*node1;
 			complete_init_node(&node1, ":=");
 
@@ -1015,18 +970,9 @@ Expr:		Expr'+'Expr
 		complete_init_node(&cur, "NULL");
 		$$.nd = cur;
 		
-		if (!$1.OFFSET) {
-			$$.place = $1.NO;
-			$$.type = VarList[$1.NO].type;
-			set_node_val_str($1.nd, "Variable");
-		}
-		else {
-			int T = NewTemp();
-			GEN("=[]", $1.NO, $1.OFFSET, T);
-			$$.place = T;
-			$$.type = $1.Array_type;
-			set_node_val_str($1.nd, "VariaArray");
-		}
+		$$.place = $1.NO;
+		$$.type = VarList[$1.NO].type;
+		set_node_val_str($1.nd, "Variable");
 
 		
 		add_son_node($$.nd, $1.nd);
@@ -1199,10 +1145,6 @@ int yyerror(char *errstr)
 	printf("\n\n Error: ");
 	printf("Line: %d Reason:", line_number);
 	switch(error_number) {
-		case REDEFINE_ARRAY :{
-			printf("Array %s is redefined!\n", errstr);
-			break;
-		}
 		case REDEFINE_SIM_VAR :{
 			printf("Simple Var %s is redefined!\n", errstr);
 			break;

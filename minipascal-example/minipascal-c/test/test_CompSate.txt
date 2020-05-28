@@ -1,8 +1,7 @@
+\{ Statement test: CompState \}
 Program a;
 Var a,b :Integer;
 Begin
-    a:=0;
-    while(a<3)
     Begin
         a:=a+1;
         b:=a*3

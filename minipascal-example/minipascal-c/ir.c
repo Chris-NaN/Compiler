@@ -19,8 +19,8 @@ void OutputQuaterList(void)
 		printf("no quater exists!\n");
 		return;
 	}
-
-	for (i = 1; i <= NXQ; i++) {
+	//printf("NXQ: %d\n", NXQ);
+	for (i = 1; i < NXQ; i++) {
 
 		printf("(%3d) ( %5s, ", i, QuaterList[i].op);
 		if (QuaterList[i].arg1)

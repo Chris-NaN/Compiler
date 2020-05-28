@@ -1,0 +1,9 @@
+\{ BoolExpr test: \}
+Program a;
+Var a,b :Integer;
+Begin
+    a:=1;
+    b:=1.2;
+    if ((a<>1 And b<>3) Or (Not b=2)) then a:=2;
+End
+.

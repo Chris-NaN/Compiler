@@ -1,0 +1,12 @@
+\{ Simple Expr test: +, -, *, / \}
+Program a;
+Var a,b :Integer;
+Begin
+    a:=4;
+    b:=2;
+    a:=a+b;
+    a:=a-b;
+    a:=a*b;
+    a:=a/b;
+End
+.

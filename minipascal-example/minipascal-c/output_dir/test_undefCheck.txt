@@ -1,0 +1,7 @@
+\{ Error checking test: undef var \}
+Program a;
+Var a  :Integer ;
+Begin
+    b
+
+ Error: Line: 4 Reason:Var b is not defined!

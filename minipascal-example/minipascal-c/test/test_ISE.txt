@@ -1,8 +1,10 @@
+\{ Statement test: ISE \}
 Program a;
 Var  a,b :Integer;
 Begin
     a:=3;
-    if(a!=0) a:=4;
+    if(a<>0) then a:=4
+    else a:=5;
     b:=5
 End
 .

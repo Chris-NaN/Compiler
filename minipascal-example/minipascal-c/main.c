@@ -32,17 +32,17 @@ int main(int argc, char *argv[])
 	yyparse();
 
 	// 输出四元式
-	puts("output quaterList");
+	puts("output quaterList: ");
 	OutputQuaterList();
 
 	// 输出符号表(变量名）
-	puts("output varList");
+	puts("output varList: ");
 	OutputVarList();
 
-	puts("output typeList");
-	OutputTypeList();
+	// puts("output typeList");
+	// OutputTypeList();
 
-	puts("draw ast_tree:");
+	puts("draw ast_tree: ");
 	draw_ast(&ast_root, 0);
 
 	// 输出抽象语法树

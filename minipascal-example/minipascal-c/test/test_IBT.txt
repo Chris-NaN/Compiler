@@ -1,0 +1,8 @@
+\{ Statement test: IBT \}
+Program a;
+Var  a,b : Integer;
+Begin
+    a:=3;
+    if(a<>0) then a:=4;
+End
+.

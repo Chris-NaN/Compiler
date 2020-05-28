@@ -1,8 +1,9 @@
+\{ Error checking test: undef var \}
 Program a;
 Var a  :Integer ;
 Begin
+    b:=2;
     a:=10;
-    Var real b:=1.5;
-    b:=a+1
+    
 End
 .

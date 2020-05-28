@@ -1,0 +1,10 @@
+\{ Complex Expr test: +, -, *, / \}
+Program a;
+Var a,b,c :Integer;
+Begin
+    a:=4;
+    b:=2;
+    a:=(a+b)-(a-b);
+    a:=(a*b)/(a*b);
+End
+.

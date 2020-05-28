@@ -1,0 +1,83 @@
+\{ Statement test: IBT \}
+Program a;
+Var  a,b : Integer;
+Begin
+    a:=3;
+    if(a<>0) then a:=4;
+End
+.
+output quaterList: 
+(  1) (    :=,      3,       ,      a )
+(  2) (   j<>,      a,      0,      4 )
+(  3) (     j,       ,       ,      5 )
+(  4) (    :=,      4,       ,      a )
+output varList: 
+ No.	 name 		   type
+   1	     a		 INTEGER
+   2	     b		 INTEGER
+   3	     3		 INTEGER
+   4	   #T0		 INTEGER
+   5	     0		 INTEGER
+   6	     4		 INTEGER
+   7	   #T1		 INTEGER
+draw ast_tree: 
+   0a 
+   1|	Program 
+   1|	a 
+   1|	; 
+   1|	SubProg 
+   2|	|	VarDef 
+   3|	|	|	Var 
+   3|	|	|	VarDefList 
+   4|	|	|	|	VarDefState 
+   5|	|	|	|	|	VarList 
+   6|	|	|	|	|	|	VarList 
+   7|	|	|	|	|	|	|	Variable 
+   8|	|	|	|	|	|	|	|	a 
+   6|	|	|	|	|	|	, 
+   6|	|	|	|	|	|	Variable 
+   7|	|	|	|	|	|	|	b 
+   5|	|	|	|	|	: 
+   5|	|	|	|	|	Type 
+   6|	|	|	|	|	|	Integer 
+   3|	|	|	; 
+   2|	|	CompState 
+   3|	|	|	Begin 
+   3|	|	|	StateList 
+   4|	|	|	|	S_L 
+   5|	|	|	|	|	StateList 
+   6|	|	|	|	|	|	S_L 
+   7|	|	|	|	|	|	|	StateList 
+   8|	|	|	|	|	|	|	|	Statement 
+   9|	|	|	|	|	|	|	|	|	AsignState 
+  10|	|	|	|	|	|	|	|	|	|	Variable 
+  11|	|	|	|	|	|	|	|	|	|	|	a 
+  10|	|	|	|	|	|	|	|	|	|	:= 
+  10|	|	|	|	|	|	|	|	|	|	Expr 
+  11|	|	|	|	|	|	|	|	|	|	|	3 
+   7|	|	|	|	|	|	|	; 
+   6|	|	|	|	|	|	Statement 
+   7|	|	|	|	|	|	|	IBT 
+   8|	|	|	|	|	|	|	|	IF 
+   8|	|	|	|	|	|	|	|	BoolExpr 
+   9|	|	|	|	|	|	|	|	|	( 
+   9|	|	|	|	|	|	|	|	|	BoolExpr 
+  10|	|	|	|	|	|	|	|	|	|	Expr 
+  11|	|	|	|	|	|	|	|	|	|	|	Variable 
+  12|	|	|	|	|	|	|	|	|	|	|	|	a 
+  10|	|	|	|	|	|	|	|	|	|	j<> 
+  11|	|	|	|	|	|	|	|	|	|	|	<> 
+  10|	|	|	|	|	|	|	|	|	|	Expr 
+  11|	|	|	|	|	|	|	|	|	|	|	0 
+   9|	|	|	|	|	|	|	|	|	) 
+   8|	|	|	|	|	|	|	|	Then 
+   7|	|	|	|	|	|	|	Statement 
+   8|	|	|	|	|	|	|	|	AsignState 
+   9|	|	|	|	|	|	|	|	|	Variable 
+  10|	|	|	|	|	|	|	|	|	|	a 
+   9|	|	|	|	|	|	|	|	|	:= 
+   9|	|	|	|	|	|	|	|	|	Expr 
+  10|	|	|	|	|	|	|	|	|	|	4 
+   5|	|	|	|	|	; 
+   3|	|	|	End 
+   1|	. 

@@ -1,0 +1,5 @@
+\{ Error checking test: redef var \}
+Program a;
+Var a,a
+
+ Error: Line: 3 Reason:Simple Var a is redefined!

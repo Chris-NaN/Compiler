@@ -1,9 +1,0 @@
-Program a;
-Var i,b :Integer;
-Begin
-    b:=1;
-    For (i:=0, i<6, i+1)
-    b:=b*3;
-    b:=b+4
-End
-.

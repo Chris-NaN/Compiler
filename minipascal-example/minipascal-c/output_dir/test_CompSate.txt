@@ -1,0 +1,83 @@
+\{ Statement test: CompState \}
+Program a;
+Var a,b :Integer;
+Begin
+    Begin
+        a:=a+1;
+        b:=a*3
+    End
+End
+.
+output quaterList: 
+(  1) (     +,      a,      1,    #T0 )
+(  2) (    :=,    #T0,       ,      a )
+(  3) (     *,      a,      3,    #T2 )
+(  4) (    :=,    #T2,       ,      b )
+output varList: 
+ No.	 name 		   type
+   1	     a		 INTEGER
+   2	     b		 INTEGER
+   3	     1		 INTEGER
+   4	   #T0		 INTEGER
+   5	   #T1		 INTEGER
+   6	     3		 INTEGER
+   7	   #T2		 INTEGER
+   8	   #T3		 INTEGER
+draw ast_tree: 
+   0a 
+   1|	Program 
+   1|	a 
+   1|	; 
+   1|	SubProg 
+   2|	|	VarDef 
+   3|	|	|	Var 
+   3|	|	|	VarDefList 
+   4|	|	|	|	VarDefState 
+   5|	|	|	|	|	VarList 
+   6|	|	|	|	|	|	VarList 
+   7|	|	|	|	|	|	|	Variable 
+   8|	|	|	|	|	|	|	|	a 
+   6|	|	|	|	|	|	, 
+   6|	|	|	|	|	|	Variable 
+   7|	|	|	|	|	|	|	b 
+   5|	|	|	|	|	: 
+   5|	|	|	|	|	Type 
+   6|	|	|	|	|	|	Integer 
+   3|	|	|	; 
+   2|	|	CompState 
+   3|	|	|	Begin 
+   3|	|	|	StateList 
+   4|	|	|	|	Statement 
+   5|	|	|	|	|	CompState 
+   6|	|	|	|	|	|	Begin 
+   6|	|	|	|	|	|	StateList 
+   7|	|	|	|	|	|	|	S_L 
+   8|	|	|	|	|	|	|	|	StateList 
+   9|	|	|	|	|	|	|	|	|	Statement 
+  10|	|	|	|	|	|	|	|	|	|	AsignState 
+  11|	|	|	|	|	|	|	|	|	|	|	Variable 
+  12|	|	|	|	|	|	|	|	|	|	|	|	a 
+  11|	|	|	|	|	|	|	|	|	|	|	:= 
+  11|	|	|	|	|	|	|	|	|	|	|	Expr 
+  12|	|	|	|	|	|	|	|	|	|	|	|	Expr 
+  13|	|	|	|	|	|	|	|	|	|	|	|	|	Variable 
+  14|	|	|	|	|	|	|	|	|	|	|	|	|	|	a 
+  12|	|	|	|	|	|	|	|	|	|	|	|	+ 
+  12|	|	|	|	|	|	|	|	|	|	|	|	Expr 
+  13|	|	|	|	|	|	|	|	|	|	|	|	|	1 
+   8|	|	|	|	|	|	|	|	; 
+   7|	|	|	|	|	|	|	Statement 
+   8|	|	|	|	|	|	|	|	AsignState 
+   9|	|	|	|	|	|	|	|	|	Variable 
+  10|	|	|	|	|	|	|	|	|	|	b 
+   9|	|	|	|	|	|	|	|	|	:= 
+   9|	|	|	|	|	|	|	|	|	Expr 
+  10|	|	|	|	|	|	|	|	|	|	Expr 
+  11|	|	|	|	|	|	|	|	|	|	|	Variable 
+  12|	|	|	|	|	|	|	|	|	|	|	|	a 
+  10|	|	|	|	|	|	|	|	|	|	* 
+  10|	|	|	|	|	|	|	|	|	|	Expr 
+  11|	|	|	|	|	|	|	|	|	|	|	3 
+   6|	|	|	|	|	|	End 
+   3|	|	|	End 
+   1|	. 

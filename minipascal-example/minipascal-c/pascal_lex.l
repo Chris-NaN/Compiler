@@ -24,7 +24,7 @@ white		[\t\n\040]
 
 \{				{ECHO;BEGIN COMMENT;}
 <COMMENT>\}		{ECHO;BEGIN(INITIAL);}
-<COMMENT>\n		{ECHO;}
+<COMMENT>\n		{ECHO;++line_number;}
 <COMMENT>[^}]+ 	{ECHO;}
 
 
@@ -42,17 +42,7 @@ white		[\t\n\040]
 [Aa][Nn][Dd]							{ECHO;return And;}
 [Oo][Rr]								{ECHO;return Or;}
 [Nn][Oo][Tt]							{ECHO;return Not;}
-[Ff][Oo][Rr]							{ECHO;return For;}
-[Tt][Oo]								{ECHO;return To;}
-[Rr][Ee][Pp][Ee][Aa][Tt]				{ECHO;return Repeat;}
-[Uu][Nn][Tt][Ii][Ll]					{ECHO;return Until;}
-[Oo][Ff]								{ECHO;return Of;}
-[Aa][Rr][Rr][Aa][Yy]					{ECHO;return Array;}
-[Gg][Oo][Tt][Oo]						{ECHO;return Goto;}
-[Cc][Aa][Ss][Ee]						{ECHO;return Case;}
-[Bb][Rr][Ee][Aa][Kk]					{ECHO;return Break;}
-[Cc][Oo][Nn][Tt][Ii][Nn][Uu][Ee]		{ECHO;return Continue;}
-[Bb][Oo][Oo][Ll][Ee][Aa][Nn]			{ECHO;return Boolean;}
+
 \'.\'	 													{ECHO;strcpy(yylval.str,yytext);return CHAR;}
 ({d}+(\.{d}*)?[Ee]([+-])?{d}+)|({d}*\.{d}+[Ee]([+-])?{d}+)	{ECHO;strcpy(yylval.str,yytext);return RealNo;}
 {d}+\.{d}*|{d}*\.{d}+										{ECHO;strcpy(yylval.str,yytext);return RealNo;}
@@ -84,7 +74,7 @@ white		[\t\n\040]
 {letter}{alnum}*	{ ECHO;strcpy(yylval.str,yytext); return Iden;}
 {white}+			{ECHO;}
 {d}+{letter}+[alnum]*   {error_number = ILLEGALIDEN ;yyerror(yytext); return ERRORCHAR; }
-.				{error_number = UNRE_COG_SYMBOL; yyerror(yytext); return ERRORCHAR; }
+
 
 %%
 

@@ -1,0 +1,8 @@
+\{ Statement test: WBD \}
+Program a;
+Var a : Integer;
+Begin
+    a:=3;
+    while(a<5) Do a:=a+1;
+End
+.

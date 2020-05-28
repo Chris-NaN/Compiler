@@ -1,0 +1,7 @@
+\{ Error checking test: redef var \}
+Program a;
+Var a,a: Real;
+Begin
+    a:=1;
+End
+.

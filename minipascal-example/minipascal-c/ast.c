@@ -34,7 +34,7 @@ void init_ast()
 
 // add son_node into parent node.
 int add_son_node(struct node *parent, struct node *son){
-  if (parent == NULL && son == NULL) return NULL_NODE_POINTER;
+  if (parent == NULL || son == NULL) return NULL_NODE_POINTER;
   // add son_node if parent has no son
   if (parent && parent->son == NULL){
     parent->son = son;
@@ -55,7 +55,7 @@ int add_son_node(struct node *parent, struct node *son){
 
 
 int add_brother_node(struct node *last, struct node *new_brother){
-  if (last == NULL && new_brother == NULL) return NULL_NODE_POINTER;
+  if (last == NULL || new_brother == NULL) return NULL_NODE_POINTER;
   struct node *tmp_parent=NULL;
   if (last->parent){ // add brother node if last's parent exist
     last->next = new_brother;
