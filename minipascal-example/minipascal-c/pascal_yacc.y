@@ -10,6 +10,7 @@
 #include "table.h"
 #include "pascal_lex.h"
 #include "util.h"
+#include "stack.h"
 
 extern int line_number;
 extern int error_number;
@@ -23,6 +24,8 @@ int yyerror(char*);
 #define WHILE 3
 #define DO 4
 
+
+LoopStack_ *stack_item, stacknode;
 %}
 %start    ProgDef
 %union 
@@ -431,6 +434,21 @@ Statement:	AsignState
 			GEN("j", 0, 0, $1.loop);
 			$$.CH = $1.CH;
 			// TODO
+			top(&stack_item);  
+			if (stack_item == NULL) {
+				error_number = INNER_ERROR;
+				yyerror("stack_item is NULL");
+			}
+			
+			BackPatch(stack_item->break_ch, NXQ);
+			
+			pop();
+
+			set_node_val_str($1.nd, "WBD");
+			set_node_val_str($2.nd, "Statement");
+
+			add_son_node($$.nd, $1.nd);
+			add_brother_node($1.nd, $2.nd);
 		}
 	|	CompState
 	    {
@@ -446,6 +464,11 @@ Statement:	AsignState
 			add_son_node($$.nd, $1.nd);
 		}
 	|	{
+		    struct node* cur;
+			complete_init_node(&cur, "NULL");
+			$$.nd = cur;
+			$$.CH = 0;	
+			
 	    }
 	;
 CompState:	Begin StateList End
@@ -555,6 +578,21 @@ WBD: Wh BoolExpr Do
 			$$.loop = $1.CH;
 
 			// TODO
+			stacknode.loop = $$.loop;
+			stacknode.type = WHILE;
+			stacknode.break_ch = 0;
+			stacknode.continue_ch = 0;
+			push(&stacknode);   
+
+
+			set_node_val_str($1.nd, "Wh");
+			set_node_val_str($2.nd, "BoolExpr");
+			struct node * node1;
+			complete_init_node(&node1, "Do");
+			
+			add_son_node($$.nd, $1.nd);
+			add_brother_node($1.nd, $2.nd);
+			add_brother_node($2.nd, node1);
 		}
 	;
 

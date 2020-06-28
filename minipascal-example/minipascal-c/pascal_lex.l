@@ -14,8 +14,8 @@ extern int yyerror(char *errstr);
 
 %}
 
-letter		[A-Za-z]
-alnum		[A-Za-z0-9]
+letter		[A-Za-z_]
+alnum		[A-Za-z0-9_]
 d			[0-9]
 white		[\t\n\040]
 %start		COMMENT

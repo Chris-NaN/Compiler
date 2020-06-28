@@ -72,7 +72,10 @@ int Enter(char *Name)
 		printf("There is no enough space!\n");
 		return 0;
 	}
-	strncpy(VarList[VarCount].name, Name, sizeof(Name));
+	
+	// strncpy(VarList[VarCount].name, Name, strlen(Name));
+	strcpy(VarList[VarCount].name, Name);
+	// VarList[VarCount].name[strlen(Name)] = '\0';
 	VarList[VarCount].addr = 0;
 	
 	return VarCount;

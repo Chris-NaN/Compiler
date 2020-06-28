@@ -1,7 +1,7 @@
 #ifndef __TABLE_H__
 #define __TABLE_H__
 
-#define TABLE_MAX_IDENT_NAME_LEN 20
+#define TABLE_MAX_IDENT_NAME_LEN 40
 #define TABLE_MAX_VAR_NUM 200
 
 typedef struct table_variable__ {

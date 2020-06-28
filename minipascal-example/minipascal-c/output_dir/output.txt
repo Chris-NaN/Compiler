@@ -1,31 +1,33 @@
-\{ Statement test: WBD \}
-Program a;
-Var a : Integer;
-Begin
-    a:=3;
-    while(a<5) Do a:=a+1;
-End
-.
+program Test;
+  Var W,_abc,_ad12_cd_23,aaaaaaaa121121212aaaaaaaaaaaaaaaaaaaa:integer;
+begin
+  W:=100;
+  _abc:=2;
+  _ad12_cd_23:=3;
+  aaaaaaaa121121212aaaaaaaaaaaaaaaaaaaa:=2;
+end.
 output quaterList: 
-(  1) (    :=,      3,       ,      a )
-(  2) (    j<,      a,      5,      4 )
-(  3) (     j,       ,       ,      7 )
-(  4) (     +,      a,      1,    #T1 )
-(  5) (    :=,    #T1,       ,      a )
-(  6) (     j,       ,       ,      2 )
+(  1) (    :=,    100,       ,      W )
+(  2) (    :=,      2,       ,   _abc )
+(  3) (    :=,      3,       , _ad12_cd_23 )
+(  4) (    :=,      2,       , aaaaaaaa121121212aaaaaaaaaaaaaaaaaaaa )
 output varList: 
  No.	 name 		   type
-   1	     a		 INTEGER
-   2	     3		 INTEGER
-   3	   #T0		 INTEGER
-   4	     5		 INTEGER
-   5	     1		 INTEGER
-   6	   #T1		 INTEGER
-   7	   #T2		 INTEGER
+   1	     W		 INTEGER
+   2	  _abc		 INTEGER
+   3	_ad12_cd_23		 INTEGER
+   4	aaaaaaaa121121212aaaaaaaaaaaaaaaaaaaa		 INTEGER
+   5	   100		 INTEGER
+   6	   #T0		 INTEGER
+   7	     2		 INTEGER
+   8	   #T1		 INTEGER
+   9	     3		 INTEGER
+  10	   #T2		 INTEGER
+  11	   #T3		 INTEGER
 draw ast_tree: 
-   0a 
+   0Test 
    1|	Program 
-   1|	a 
+   1|	Test 
    1|	; 
    1|	SubProg 
    2|	|	VarDef 
@@ -33,8 +35,20 @@ draw ast_tree:
    3|	|	|	VarDefList 
    4|	|	|	|	VarDefState 
    5|	|	|	|	|	VarList 
+   6|	|	|	|	|	|	VarList 
+   7|	|	|	|	|	|	|	VarList 
+   8|	|	|	|	|	|	|	|	VarList 
+   9|	|	|	|	|	|	|	|	|	Variable 
+  10|	|	|	|	|	|	|	|	|	|	W 
+   8|	|	|	|	|	|	|	|	, 
+   8|	|	|	|	|	|	|	|	Variable 
+   9|	|	|	|	|	|	|	|	|	_abc 
+   7|	|	|	|	|	|	|	, 
+   7|	|	|	|	|	|	|	Variable 
+   8|	|	|	|	|	|	|	|	_ad12_cd_23 
+   6|	|	|	|	|	|	, 
    6|	|	|	|	|	|	Variable 
-   7|	|	|	|	|	|	|	a 
+   7|	|	|	|	|	|	|	aaaaaaaa121121212aaaaaaaaaaaaaaaaaaaa 
    5|	|	|	|	|	: 
    5|	|	|	|	|	Type 
    6|	|	|	|	|	|	Integer 
@@ -46,15 +60,42 @@ draw ast_tree:
    5|	|	|	|	|	StateList 
    6|	|	|	|	|	|	S_L 
    7|	|	|	|	|	|	|	StateList 
+   8|	|	|	|	|	|	|	|	S_L 
+   9|	|	|	|	|	|	|	|	|	StateList 
+  10|	|	|	|	|	|	|	|	|	|	S_L 
+  11|	|	|	|	|	|	|	|	|	|	|	StateList 
+  12|	|	|	|	|	|	|	|	|	|	|	|	Statement 
+  13|	|	|	|	|	|	|	|	|	|	|	|	|	AsignState 
+  14|	|	|	|	|	|	|	|	|	|	|	|	|	|	Variable 
+  15|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	W 
+  14|	|	|	|	|	|	|	|	|	|	|	|	|	|	:= 
+  14|	|	|	|	|	|	|	|	|	|	|	|	|	|	Expr 
+  15|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	100 
+  11|	|	|	|	|	|	|	|	|	|	|	; 
+  10|	|	|	|	|	|	|	|	|	|	Statement 
+  11|	|	|	|	|	|	|	|	|	|	|	AsignState 
+  12|	|	|	|	|	|	|	|	|	|	|	|	Variable 
+  13|	|	|	|	|	|	|	|	|	|	|	|	|	_abc 
+  12|	|	|	|	|	|	|	|	|	|	|	|	:= 
+  12|	|	|	|	|	|	|	|	|	|	|	|	Expr 
+  13|	|	|	|	|	|	|	|	|	|	|	|	|	2 
+   9|	|	|	|	|	|	|	|	|	; 
    8|	|	|	|	|	|	|	|	Statement 
    9|	|	|	|	|	|	|	|	|	AsignState 
   10|	|	|	|	|	|	|	|	|	|	Variable 
-  11|	|	|	|	|	|	|	|	|	|	|	a 
+  11|	|	|	|	|	|	|	|	|	|	|	_ad12_cd_23 
   10|	|	|	|	|	|	|	|	|	|	:= 
   10|	|	|	|	|	|	|	|	|	|	Expr 
   11|	|	|	|	|	|	|	|	|	|	|	3 
    7|	|	|	|	|	|	|	; 
    6|	|	|	|	|	|	Statement 
+   7|	|	|	|	|	|	|	AsignState 
+   8|	|	|	|	|	|	|	|	Variable 
+   9|	|	|	|	|	|	|	|	|	aaaaaaaa121121212aaaaaaaaaaaaaaaaaaaa 
+   8|	|	|	|	|	|	|	|	:= 
+   8|	|	|	|	|	|	|	|	Expr 
+   9|	|	|	|	|	|	|	|	|	2 
    5|	|	|	|	|	; 
+   4|	|	|	|	Statement 
    3|	|	|	End 
    1|	. 
